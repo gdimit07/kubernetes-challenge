@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-challenge
+  name: k8s-challenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-challenge
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-challenge
+    spec:
+      containers:
+      - image: k8s-challenge:v1
+        name: k8s-challenge
+        env:
+        - name: NAME
+          valueFrom:
+            configMapKeyRef:
+              key: NAME
+              name: k8s-challenge
+        resources: {}
+status: {}
